@@ -1,0 +1,42 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp22
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Random rand = new Random();
+            Point A = new Point();
+            Rectangle rect = new Rectangle();
+            A.x = rand.Next(-10, 10);   //Генерира координата Х на т.А (число в интервала от -10 до 10)
+            A.y = rand.Next(-10, 10);   //Генерира координата Y на т.А (число в интервала от -10 до 10)
+
+            rect.x = rand.Next(-10, 10); //Генерира координата Х на т.А за правоъгълника (число в интервала от -10 до 10)
+            rect.y = rand.Next(-10, 10); //Генерира координата Х на т.А за правоъгълника (число в интервала от -10 до 10)
+
+            rect.Height = rand.Next(1, 10); //Височина на правоъгълник
+            rect.Width =  rand.Next(1, 10); //Дължина на правоъгълник
+
+            Console.WriteLine("Point A({0},{1})",A.x,A.y);
+            Console.WriteLine("Start point Rectangle A[{0},{1}]",rect.x,rect.y);
+            Console.WriteLine("Изчертанието на правоъгълника е винаги положителна посока по X и Y");
+            Console.WriteLine("Дължина на правоъгълник:  {0}",rect.Width);
+            Console.WriteLine("Височина на правоъгълник:  {0}",rect.Height);
+            if ((rect.x < A.x && rect.x + rect.Width > A.x) && (rect.y < A.y && rect.y + rect.Height > A.y))
+            {
+                Console.WriteLine("In rectangle"); // Точката е в правоъгълника
+            }
+            else if (((A.y == rect.y || A.y == rect.y + rect.Height) && (A.x>=rect.x || A.x<=rect.x+rect.Width)) || ((A.x == rect.x || A.x == rect.x + rect.Width) && (A.x >= rect.x || A.x <= rect.x + rect.Width)))
+            {
+                 Console.WriteLine("Border"); // Точката лежи на някоя от страните на правоъгълника
+            }
+
+            
+            else
+            {
+                Console.WriteLine("Out rectangle"); // Точката е извън правоъгълника
